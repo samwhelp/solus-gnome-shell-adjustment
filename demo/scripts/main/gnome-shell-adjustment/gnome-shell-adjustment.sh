@@ -61,7 +61,7 @@ mod_gnome_shell_config_for_keybind_main () {
 	## ## Application / Launcher
 	##
 
-	gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
+	#gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
 
 	gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 
@@ -215,15 +215,26 @@ mod_gnome_shell_config_for_keybind_custom () {
 
 	## ### Terminal
 	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/name "'Terminal'"
-	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/command "'kgx'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/command "'xfce4-terminal'"
 	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/binding "'<Alt>Return'"
 
 
 	## ### Terminal-1
 	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/name "'Terminal-1'"
-	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/command "'kgx'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/command "'xfce4-terminal'"
 	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/binding "'<Shift><Alt>a'"
 
+
+	## ### Terminal
+	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/name "'Terminal'"
+	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/command "'kgx'"
+	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/binding "'<Alt>Return'"
+
+
+	## ### Terminal-1
+	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/name "'Terminal-1'"
+	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/command "'kgx'"
+	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/binding "'<Shift><Alt>a'"
 
 
 	## ### Terminal
@@ -239,15 +250,15 @@ mod_gnome_shell_config_for_keybind_custom () {
 
 
 	## ### Terminal
-	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/name "'Terminal'"
-	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/command "'ptyxis --new-window'"
-	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/binding "'<Alt>Return'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/name "'Terminal'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/command "'ptyxis --new-window'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal/binding "'<Alt>Return'"
 
 
 	## ### Terminal-1
-	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/name "'Terminal-1'"
-	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/command "'ptyxis --new-window'"
-	dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/binding "'<Shift><Alt>a'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/name "'Terminal-1'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/command "'ptyxis --new-window'"
+	#dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/terminal-1/binding "'<Shift><Alt>a'"
 
 
 	## ### File Manager
@@ -709,14 +720,61 @@ mod_tool_gnome_terminal_config_for_profile () {
 mod_tool_nautilus_config () {
 
 
+
+	##
+	## ## Default View Mode
+	##
+
 	gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
-	
+
+
+
+
+	##
+	## ## Show Hidden Files
+	##
+
+	gsettings set org.gnome.nautilus.preferences show-hidden-files true
+
+	gsettings set org.gtk.gtk4.Settings.FileChooser show-hidden true
+
+
+
+
+	##
+	## ## Show Hidden Files
+	##
+
+	#gsettings set org.gnome.nautilus.preferences click-policy 'single'
+
 	gsettings set org.gnome.nautilus.preferences click-policy 'double'
 
 
 
 
-	gsettings set org.gtk.gtk4.Settings.FileChooser show-hidden true
+	##
+	## ## Not Expandable Folders in ListView
+	##
+
+	gsettings set org.gnome.nautilus.list-view use-tree-view false
+
+	gsettings set org.gtk.Settings.FileChooser expand-folders false
+	gsettings set org.gtk.gtk4.Settings.FileChooser expand-folders false
+
+
+
+
+	##
+	## ## Sort Folders Before Files
+	##
+
+	gsettings set org.gtk.Settings.FileChooser sort-column 'name'
+	gsettings set org.gtk.Settings.FileChooser sort-directories-first true
+	gsettings set org.gtk.Settings.FileChooser sort-order 'ascending'
+
+	gsettings set org.gtk.gtk4.Settings.FileChooser sort-column 'name'
+	gsettings set org.gtk.gtk4.Settings.FileChooser sort-directories-first true
+	gsettings set org.gtk.gtk4.Settings.FileChooser sort-order 'ascending'
 
 
 	return 0
@@ -833,9 +891,9 @@ mod_gnome_shell_config () {
 
 mod_tool_config () {
 
-	#mod_tool_gnome_console_config
+	mod_tool_gnome_console_config
 
-	mod_tool_ptyxis_config
+	#mod_tool_ptyxis_config
 
 	#mod_tool_gnome_terminal_config
 

@@ -61,7 +61,7 @@ mod_gnome_shell_config_for_keybind_main () {
 	## ## Application / Launcher
 	##
 
-	gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
+	#gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
 
 	gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "['<Alt>F1']"
 
